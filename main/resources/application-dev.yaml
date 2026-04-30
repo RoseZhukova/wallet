@@ -1,0 +1,34 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import: application-secret.yaml
+
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/wallet_dev_db
+#    username: postgres
+#    password: postgres
+#    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  liquibase:
+    enabled: true
+    contexts: dev
+    change-log: "classpath:db/changelog.sql"
+
+server:
+  port: 8081
+
+logging:
+  level:
+    com.eremina.wallet: DEBUG
+    org.hibernate.SQL: DEBUG
+    liquibase: INFO

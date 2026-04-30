@@ -1,3 +1,29 @@
 spring:
   application:
-    name: wallet
+    name: wallet-service
+
+  config:
+    import: application-secret.yaml
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  sql:
+    init:
+      mode: never
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    enabled: true
+
+logging:
+  level:
+    root: INFO
+    com.eremina.wallet: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
