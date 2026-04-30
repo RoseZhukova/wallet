@@ -73,8 +73,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(OptimisticLockingFailureException.class)
     public ResponseEntity<Map<String, Object>> handleOptimisticLock(OptimisticLockingFailureException ex) {
         log.error("Concurrent modification detected", ex);
-        return buildErrorResponse(
-                HttpStatus.CONFLICT,
+        return buildErrorResponse(HttpStatus.CONFLICT,
                 "Concurrent Modification",
                 "The wallet was modified by another request. Please retry."
         );

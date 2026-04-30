@@ -33,15 +33,13 @@ public class WalletService {
             }
             wallet.setBalance(wallet.getBalance().subtract(request.getAmount()));
         }
-
         return walletRepository.save(wallet);
     }
 
     @Transactional(readOnly = true)
     public WalletEntity getBalance(UUID walletId) {
         return walletRepository.findById(walletId)
-                .orElseThrow(() -> new WalletNotFoundException(
-                        "Wallet not found with id: " + walletId));
+                .orElseThrow(() -> new WalletNotFoundException("Wallet not found with id: " + walletId));
     }
 
     public WalletEntity performOperation(WalletOperationRequestDTO request) {
